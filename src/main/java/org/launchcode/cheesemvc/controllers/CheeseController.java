@@ -6,14 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
 
-    static ArrayList<String> cheeses = new ArrayList<>();
+    static HashMap<String, String> cheeses = new HashMap<>();
 
 //    Request path: /cheese
     @RequestMapping(value = "")
@@ -31,9 +31,9 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@RequestParam String cheeseName) { //needs to match name in form on the View
+    public String processAddCheeseForm(@RequestParam String cheeseName, String cheeseDescription) { //needs to match name in form on the View
 
-        cheeses.add(cheeseName);
+        cheeses.put(cheeseName, cheeseDescription);
 
         return "redirect:";
     }
